@@ -3,7 +3,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-//コンパイルしてコマンドラインから実行してください
 //引数はreadmeを参照
 void initRepository()
 {
@@ -27,7 +26,7 @@ int main(void)
 	char command[256];
 	char* input;
 
-	printf("なんちゃってバージョン管理\n");
+	printf("バージョン管理\n");
 	while (1)
 	{
 		printf("> ");
@@ -39,14 +38,6 @@ int main(void)
 		{
 			initRepository();
 		}
-	
-	
 	}
-
-
-
-	
-
-	initRepository();
-	
+	return 0;
 }
