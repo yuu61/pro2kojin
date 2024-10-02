@@ -1,2 +1,5 @@
 ﻿  FileName.c
+C:\Users\admin\source\repos\pro2kojin\pro2kojin\FileName.c(38,2): warning C4047: 'return': 間接参照のレベルが 'char' と 'char [41]' で異なっています。
+C:\Users\admin\source\repos\pro2kojin\pro2kojin\FileName.c(45,8): warning C4101: 'option': ローカル変数は 1 度も使われていません。
+C:\Users\admin\source\repos\pro2kojin\pro2kojin\FileName.c(38,1): warning C4172: ローカル変数またはテンポラリ : hash のアドレスを返します
   pro2kojin.vcxproj -> C:\Users\admin\source\repos\pro2kojin\x64\Debug\pro2kojin.exe
