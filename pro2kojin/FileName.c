@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <openssl/sha.h>
 
-//ˆø”‚Íreadme‚ðŽQÆ
+//å¼•æ•°ã¯readmeã‚’å‚ç…§
 void initRepository(char* command)
 {
 	char comitDir[256], stageDir[256];
@@ -19,23 +19,42 @@ void initRepository(char* command)
 		}
 		else
 		{
-			printf("ƒGƒ‰[\n‰ºˆÊƒtƒHƒ‹ƒ_‚ðì¬‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½\n‚·‚Å‚É‘¶Ý‚·‚é‚©AƒAƒNƒZƒXŒ ‚ª‚ ‚è‚Ü‚¹‚ñ\n");
+			printf("ã‚¨ãƒ©ãƒ¼\nä¸‹ä½ãƒ•ã‚©ãƒ«ãƒ€ã‚’ä½œæˆã§ãã¾ã›ã‚“ã§ã—ãŸ\nã™ã§ã«å­˜åœ¨ã™ã‚‹ã‹ã€ã‚¢ã‚¯ã‚»ã‚¹æ¨©ãŒã‚ã‚Šã¾ã›ã‚“\n");
 		}
 	}
 	else
 	{
-		printf("ƒGƒ‰[\nƒŠƒ|ƒWƒgƒŠ‚ðì¬‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½\n‚·‚Å‚É‘¶Ý‚·‚é‚©AƒAƒNƒZƒXŒ ‚ª‚ ‚è‚Ü‚¹‚ñ\n");
+		printf("ã‚¨ãƒ©ãƒ¼\nãƒªãƒã‚¸ãƒˆãƒªã‚’ä½œæˆã§ãã¾ã›ã‚“ã§ã—ãŸ\nã™ã§ã«å­˜åœ¨ã™ã‚‹ã‹ã€ã‚¢ã‚¯ã‚»ã‚¹æ¨©ãŒã‚ã‚Šã¾ã›ã‚“\n");
 	}
 }
 
-char hashGen(const char* pass)
+void hashGen(const char* filepath)
 {
-	char passs[256];
-	char hash[41];
-	snprintf(passs, sizeof(passs), "certutil -hashfile %s sha1", pass);
-	system(passs);
-	//certutil -hashfile‚ÍƒvƒƒOƒ‰ƒ€“à‚Å‚ÌŽg—p‚ª„§‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚Åsha1ˆÃ†ŠÖ”‚ðŒã‚ÅŽÀ‘•
-	return hash;
+	FILE* fp = fopen(filepath, "rb");
+	if (!fp) {
+		perror("ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³ã‚¨ãƒ©ãƒ¼");
+		return;
+	}
+
+	SHA_CTX shaContext;
+	unsigned char hash[SHA_DIGEST_LENGTH];
+	unsigned char buffer[BUFFER_SIZE];
+	int bytesRead = 0;
+
+	while ((bytesRead = fread(buffer, 1, BUFFER_SIZE, fp)) > 0) 
+	{
+		SHA1_Update(&shaContext, buffer, bytesRead);
+	}
+
+	SHA1_Final(hash, &shaContext);
+
+	printf("SHA1 hash of file %s: ", fp);
+	for (int i = 0; i < SHA_DIGEST_LENGTH; i++) {
+		printf("%02x", hash[i]);
+	}
+	printf("\n");
+
+	fclose(fp);
 }
 
 int main(void)
@@ -44,7 +63,7 @@ int main(void)
 	char* input;
 	char* option;
 
-	printf("ƒo[ƒWƒ‡ƒ“ŠÇ—\n");
+	printf("ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç®¡ç†\n");
 	while (1)
 	{
 		printf("> ");
