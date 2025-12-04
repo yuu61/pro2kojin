@@ -249,7 +249,7 @@ flowchart TD
     F -->|No| H["getCurrentTime(&timestamp)<br/>(現在時刻取得)"]
     H --> I["generateCommitId(&indexData, &id)<br/>(コミットID生成)"]
     I --> J["hashCombine(index + timestamp)<br/>(SHA1でID生成)"]
-    J --> K["createCommitDir(id)<br/>(comitDir/[id]/作成)"]
+    J --> K["createCommitDir(id)<br/>(commitDir/[id]/作成)"]
     K --> L["copyStageToCommit(id)<br/>(ファイルコピー)"]
     L --> M["readHead(&parentId)<br/>(親コミットID取得)"]
     M --> N["writeMeta(id, timestamp,<br/>message, parentId)"]
