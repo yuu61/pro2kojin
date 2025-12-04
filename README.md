@@ -29,7 +29,7 @@
 .vcs/                    # リポジトリルート
 ├── stageDir/           # ステージングエリア
 │   └── [ハッシュ値]    # ステージされたファイルのコピー
-└── comitDir/           # コミット履歴
+└── commitDir/           # コミット履歴
     ├── [コミットID]/   # 各コミットのスナップショット
     │   ├── files/      # コミット時のファイル群
     │   └── meta.txt    # メタデータ(日時、メッセージ)
@@ -51,14 +51,14 @@
 
 3. **commit機能**
    - [ ] stageDirの内容からコミットIDを生成(全体のハッシュ)
-   - [ ] comitDir/[コミットID]/にスナップショットを保存
+   - [ ] commitDir/[コミットID]/にスナップショットを保存
    - [ ] meta.txtにタイムスタンプとメッセージを記録
    - [ ] HEADを更新
    - [ ] コマンド: `commit "<メッセージ>"`
 
 ### Phase 2: 履歴管理
 4. **log機能**
-   - [ ] comitDir/を走査して全コミット履歴を表示
+   - [ ] commitDir/を走査して全コミット履歴を表示
    - [ ] 各コミットのID、日時、メッセージを表示
    - [ ] コマンド: `log`
 
@@ -105,14 +105,14 @@
 ...
 ```
 
-### meta.txt (comitDir/[コミットID]/meta.txt)
+### meta.txt (commitDir/[コミットID]/meta.txt)
 ```
 timestamp: 2025-12-04 10:30:45
 message: 初回コミット
 parent: <親コミットID または none>
 ```
 
-### HEAD.txt (comitDir/HEAD.txt)
+### HEAD.txt (commitDir/HEAD.txt)
 ```
 <現在のコミットID>
 ```
