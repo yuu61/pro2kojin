@@ -116,7 +116,7 @@ graph TB
 
 #### 6. Data Storage
 - **stageDir/**: ステージされたファイルとインデックス
-- **comitDir/**: コミット履歴とスナップショット
+- **commitDir/**: コミット履歴とスナップショット
 - **Working Directory**: ユーザーの作業ディレクトリ
 
 ---
