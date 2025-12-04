@@ -57,7 +57,7 @@ graph TB
 
     subgraph Storage["Data Storage (.vcs/)"]
         StageDir["stageDir/<br/>- index.txt<br/>- [files]"]
-        CommitDir["comitDir/<br/>- [commits]/<br/>- HEAD.txt"]
+        CommitDir["commitDir/<br/>- [commits]/<br/>- HEAD.txt"]
         WorkDir["Working Directory<br/>- user files"]
     end
 
@@ -138,7 +138,7 @@ graph TB
         C1["1. stageDirから<br/>ファイル一覧取得"]
         C2["2. タイムスタンプ生成"]
         C3["3. コミットID生成<br/>(SHA1)"]
-        C4["4. comitDir/[ID]/<br/>ディレクトリ作成"]
+        C4["4. commitDir/[ID]/<br/>ディレクトリ作成"]
         C5["5. ファイルを<br/>コミットDirにコピー"]
         C6["6. meta.txt作成"]
         C7["7. HEAD.txt更新"]
@@ -147,7 +147,7 @@ graph TB
     end
 
     subgraph ReaderFlow["History Reader Process"]
-        R1["1. comitDir/を走査"]
+        R1["1. commitDir/を走査"]
         R2["2. 各コミットの<br/>meta.txt読み込み"]
         R3["3. コミット情報を<br/>構造体に格納"]
         R4["4. 時系列順にソート"]
@@ -158,7 +158,7 @@ graph TB
 
     subgraph CheckoutFlow["Checkout Handler Process"]
         CH1["1. コミットID検証"]
-        CH2["2. comitDir/[ID]/<br/>存在確認"]
+        CH2["2. commitDir/[ID]/<br/>存在確認"]
         CH3["3. 作業ディレクトリの<br/>バックアップ警告"]
         CH4["4. コミット内ファイルを<br/>作業Dirに復元"]
         CH5["5. HEAD.txt更新"]
