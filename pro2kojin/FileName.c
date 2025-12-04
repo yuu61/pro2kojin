@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #include <openssl/sha.h>
 
-//引数はreadmeを参照
-void initRepository(char* command)
+// 引数はreadmeを参照
+void initRepository(char *command)
 {
 	char comitDir[256], stageDir[256];
 	snprintf(comitDir, sizeof(comitDir), "%s/comitDir", command);
@@ -28,10 +28,11 @@ void initRepository(char* command)
 	}
 }
 
-void hashGen(const char* filepath)
+void hashGen(const char *filepath)
 {
-	FILE* fp = fopen(filepath, "rb");
-	if (!fp) {
+	FILE *fp = fopen(filepath, "rb");
+	if (!fp)
+	{
 		perror("ファイルオープンエラー");
 		return;
 	}
@@ -41,7 +42,7 @@ void hashGen(const char* filepath)
 	unsigned char buffer[BUFFER_SIZE];
 	int bytesRead = 0;
 
-	while ((bytesRead = fread(buffer, 1, BUFFER_SIZE, fp)) > 0) 
+	while ((bytesRead = fread(buffer, 1, BUFFER_SIZE, fp)) > 0)
 	{
 		SHA1_Update(&shaContext, buffer, bytesRead);
 	}
@@ -49,7 +50,8 @@ void hashGen(const char* filepath)
 	SHA1_Final(hash, &shaContext);
 
 	printf("SHA1 hash of file %s: ", fp);
-	for (int i = 0; i < SHA_DIGEST_LENGTH; i++) {
+	for (int i = 0; i < SHA_DIGEST_LENGTH; i++)
+	{
 		printf("%02x", hash[i]);
 	}
 	printf("\n");
@@ -60,19 +62,18 @@ void hashGen(const char* filepath)
 int main(void)
 {
 	char command[256];
-	char* input;
-	char* option;
+	char *input;
+	char *option;
 
 	printf("バージョン管理\n");
 	while (1)
 	{
 		printf("> ");
 		input = fgets(command, sizeof(command), stdin);
-		
+
 		command[strcspn(command, "\n")] = 0;
 
 		(void)hashGen("C:\\Users\\admin\\Downloads\\0G03036_DX01.c");
-		
 	}
 	return 0;
 }
